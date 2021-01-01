@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { VehiclePerson } from '../interface/VehiclePerson'
+import { VehiclePerson } from '../../interface/VehiclePerson'
 
 // =========== CSR and SSR combination
 

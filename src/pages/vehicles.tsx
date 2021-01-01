@@ -5,8 +5,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { NextPageContext } from 'next';
+import { myGet } from '../utils/myGet';
 
-export default function Vehicles ({vehicleList}) {
+export default function Vehicles ({vehicleList}: any) {
     return <TableContainer component={Paper}>
     <Table aria-label="simple table">
       <TableHead>
@@ -18,7 +20,7 @@ export default function Vehicles ({vehicleList}) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {vehicleList.map((row) => (
+        {vehicleList.map((row: any) => (
           <TableRow key={row.id}>
             <TableCell component="th" scope="row">
               {row.id}
@@ -33,11 +35,9 @@ export default function Vehicles ({vehicleList}) {
   </TableContainer>
 }
 
-export async function getServerSideProps() {
-    // Fetch data from external API
-    const response = await fetch(`http://localhost:3000/api/vehicles`)
-    const vehicleList = await response.json()
-  
-    // Pass data to the page via props
-    return { props: { vehicleList } }
+export async function getServerSideProps(ctx: NextPageContext) {
+  const vehicleList = await myGet(`http://localhost:3000/api/vehicles`, ctx)
+
+  // Pass data to the page via props
+  return { props: { vehicleList } }
 }

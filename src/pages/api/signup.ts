@@ -11,7 +11,7 @@ export default async function signup(req: NextApiRequest, res: NextApiResponse) 
             const statement = await db.prepare('INSERT INTO person (name, email, password) values (?, ?, ?)')
             const result = await statement.run(req.body.name, req.body.email, hash)
             result.finalize()
-            const person = await db.all('SELECT * FROM person')
+            const person = await db.all('SELECT name,email FROM person')
             res.json(person)
         });
     } else {

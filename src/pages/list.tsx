@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { VehiclePerson } from './interface/VehiclePerson'
+import { VehiclePerson } from '../interface/VehiclePerson'
 
 // ========== Server Side Rendering (SSR)
 
 export async function getServerSideProps() {
     // Fetch data from external API
-    const response = await fetch(`http://localhost:3000/api/owners`)
+    const response = await fetch(`http://localhost:3000/api/people`)
     const ownerList:VehiclePerson[] | undefined = await response.json()
   
     // Pass data to the page via props
